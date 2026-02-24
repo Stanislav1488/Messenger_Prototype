@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:Messenger_Prototype"
              StartupUri="View/MessengerWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/View/StyleTextBox.xaml"/>
+                <ResourceDictionary Source="/View/StyleButton.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
