@@ -12,7 +12,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="0" Background="#FF181818">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition/>
@@ -20,41 +20,41 @@
 
             <StackPanel Grid.Row="0" Orientation="Horizontal">
                 <Button Height="40" Width="40" Margin="10"/>
-                <TextBox Height="40" Width="230"/>
+                <TextBox Height="40" Width="230" Style="{StaticResource styleTextBox}" Tag="Поиск"/>
             </StackPanel>
 
-            <ListBox Grid.Row="1">
+            <ListBox Grid.Row="1" Background="#FF181818">
                 <StackPanel Height="60" Width="285" Orientation ="Horizontal">
                     <Image Height="40" Width="40" Margin="10"/>
-                    <Label Height="40" Content="Stan Debilov" HorizontalAlignment="Center" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="Black"/>
+                    <Label Height="40" Content="Stan Debilov" HorizontalAlignment="Center" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
                 </StackPanel>
                 <StackPanel Height="60" Width="285" Orientation ="Horizontal">
                     <Image Height="40" Width="40" Margin="10"/>
-                    <Label Height="40" Content="Ya lybly linky malinky" HorizontalAlignment="Center" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="Black"/>
+                    <Label Height="40" Content="Ya lybly linky malinky" HorizontalAlignment="Center" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
                 </StackPanel>
                 <StackPanel Height="60" Width="285" Orientation ="Horizontal">
                     <Image Height="40" Width="40" Margin="10"/>
-                    <Label Height="40" Content="Go seks" HorizontalAlignment="Center" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="Black"/>
+                    <Label Height="40" Content="Go seks" HorizontalAlignment="Center" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
                 </StackPanel>
             </ListBox>
         </Grid>
 
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition/>
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
+            <Grid Grid.Row="0" Background="#FF181818">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left">
-                    <Label Height="30" Margin="10, 0" Content="Линка Малинка" HorizontalAlignment="Left" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="Black"/>
-                    <Label Height="30" Margin="10, 0" Content="был(а) 10 минут назад" HorizontalAlignment="Left" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="Black"/>
+                    <Label Height="30" Margin="10, 0" Content="Линка Малинка" HorizontalAlignment="Left" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
+                    <Label Height="30" Margin="10, 0" Content="был(а) 10 минут назад" HorizontalAlignment="Left" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
@@ -64,7 +64,10 @@
                 </StackPanel>
             </Grid>
 
-            <Grid Grid.Row ="2">
+            <Grid Grid.Row="1" Background="#FF232323">
+            </Grid>
+
+            <Grid Grid.Row ="2" Background="#FF181818">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition/>
