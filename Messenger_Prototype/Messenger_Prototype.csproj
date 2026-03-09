@@ -105,5 +105,26 @@
   <ItemGroup>
     <Resource Include="View\Images\attach.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\smile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\sent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\sent_grey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\call.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\menu_vertical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Images\menu.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
