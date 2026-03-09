@@ -74,7 +74,9 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Height="40" Width="40" Margin="10" Style="{StaticResource styleButton}"/>
+                <Button Grid.Column="0" Height="40" Width="40" Margin="10" Style="{StaticResource styleButton}">
+                    <Image Height="24" Width="24" Source="/View/Images/attach.png"/>
+                </Button>
 
                 <TextBox Grid.Column="1" Height="40" Style="{StaticResource styleTextBox}" Tag="Cообщение..."/>
 
