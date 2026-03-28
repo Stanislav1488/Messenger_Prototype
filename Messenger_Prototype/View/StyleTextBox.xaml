@@ -8,11 +8,8 @@
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="15,8"/>
-        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontSize" Value="14"/>
-        <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="CaretBrush" Value="Transparent"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
@@ -20,17 +17,13 @@
                     Background="{TemplateBinding Background}"
                     CornerRadius="20">
                         <Grid>
-                            <ScrollViewer x:Name="PART_ContentHost"
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-
                             <TextBlock
                                 x:Name="hint"
                                 VerticalAlignment="Center"
                                 Background="{TemplateBinding Background}"
                                 FontSize="{TemplateBinding FontSize}"
                                 FontFamily="{TemplateBinding FontFamily}"
-                                FontWeight="{TemplateBinding FontWeight}"
+                                FontWeight="Bold"
                                 Foreground="#343434"
                                 IsHitTestVisible="False"
                                 Text="{TemplateBinding Tag}"
@@ -38,12 +31,16 @@
                                 TextAlignment="{TemplateBinding TextAlignment}"
                                 Visibility="Collapsed"
                                 />
+
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter TargetName="border" Property="BorderBrush" Value="#0078D7"/>
-                            <Setter TargetName="border" Property="BorderThickness" Value="2"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="#3FC1B0"/>
+                            <Setter TargetName="border" Property="BorderThickness" Value="1.4"/>
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
