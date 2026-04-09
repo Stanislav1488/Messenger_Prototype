@@ -25,7 +25,7 @@
                 <TextBox Height="40" Width="230" Style="{StaticResource styleTextBox}" Tag="Поиск"/>
             </StackPanel>
 
-            <ListBox Grid.Row="1" Background="#FF181818">
+            <ListBox Grid.Row="1" Background="#FF181818" BorderThickness="0">
                 <StackPanel Height="60" Width="285" Orientation ="Horizontal">
                     <Image Height="40" Width="40" Margin="10"/>
                     <Label Height="40" Content="Stan Debilov" HorizontalAlignment="Center" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>

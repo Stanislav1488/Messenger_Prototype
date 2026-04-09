@@ -63,6 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="View\MessengerWindow.xaml.cs">
       <DependentUpon>MessengerWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -126,5 +127,6 @@
   <ItemGroup>
     <Resource Include="View\Images\menu.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
