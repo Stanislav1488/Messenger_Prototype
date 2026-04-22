@@ -22,5 +22,16 @@ namespace Messenger_Prototype.ViewModel
                 OnPropertyChanged(nameof(selectedChat));
             }
         }
+
+        public MainViewModel()
+        {
+            Chats = new ObservableCollection<Chat>();
+
+            User user = new User { Name = "Линочка", Status = "online"};
+
+            Chat chat = new Chat { Partner = user};
+
+            Chats.Add(chat);
+        }
     }
 }

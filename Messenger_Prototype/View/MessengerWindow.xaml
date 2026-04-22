@@ -7,11 +7,11 @@
         xmlns:local="clr-namespace:Messenger_Prototype"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1200">
-    
+
     <Window.DataContext>
         <viewodel:MainViewModel/>
     </Window.DataContext>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300" />
@@ -60,9 +60,9 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left">
-                    <Label Height="30" Margin="10, 0" Content="Линка Малинка" HorizontalAlignment="Left" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
-                    <Label Height="30" Margin="10, 0" Content="был(а) 10 минут назад" HorizontalAlignment="Left" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
+                <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Chats[0].Partner.Name}" FontSize="14" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="{Binding Chats[0].Partner.Status}" FontSize="14" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
