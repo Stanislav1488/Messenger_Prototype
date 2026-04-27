@@ -78,8 +78,13 @@
                 </StackPanel>
             </Grid>
 
-            <Grid Grid.Row="1" Background="#FF232323">
-            </Grid>
+            <ListBox Grid.Row="1" Background="#FF232323" ItemsSource="{Binding selectedChat.Messages}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Text}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
             <Grid Grid.Row ="2" Background="#FF181818">
                 <Grid.ColumnDefinitions>
@@ -92,13 +97,13 @@
                     <Image Height="24" Width="24" Source="/View/Images/attach.png"/>
                 </Button>
 
-                <TextBox Grid.Column="1" Height="40" Style="{StaticResource styleTextBox}" Tag="Cообщение..."/>
+                <TextBox Grid.Column="1" Height="40" Style="{StaticResource styleTextBox}" Text="{Binding newMessageText, UpdateSourceTrigger=PropertyChanged}" Tag="Cообщение..."/>
 
                 <StackPanel Grid.Column="2" Orientation="Horizontal">
                     <Button Height="40" Width="40" Margin="10" Style="{StaticResource styleButton}">
                         <Image Height="24" Width="24" Source="/View/Images/smile.png"/>
                     </Button>
-                    <Button Height="40" Width="40" Margin="0, 0, 10, 0" Style="{StaticResource styleButton}">
+                    <Button Command="{Binding SendMessageCommand}" Height="40" Width="40" Margin="0, 0, 10, 0" Style="{StaticResource styleButton}">
                         <Image Height="24" Width="24" Source="/View/Images/sent.png"/>
                     </Button>
                 </StackPanel>
