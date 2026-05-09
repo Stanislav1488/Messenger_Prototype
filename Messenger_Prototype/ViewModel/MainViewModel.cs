@@ -39,16 +39,19 @@ namespace Messenger_Prototype.ViewModel
         {
             Chats = new ObservableCollection<Chat>();
 
-            User user = new User { Name = "Линочка", Status = "online" };
+            User userFirst = new User { Name = "Линочка", Status = "online" };
+            User userSecond = new User { Name = "Егор", Status = "last seen 10 minutes ago" };
+            User userThird = new User { Name = "Ваня", Status = "last seen 1 hour ago" };
 
-            Chat chat = new Chat
-            {
-                Partner = user,
-                Messages = new ObservableCollection<Message>()
-            };
+            Chat chatFirst = new Chat { Partner = userFirst, Messages = new ObservableCollection<Message>() };
+            Chat chatSecond = new Chat { Partner = userSecond, Messages = new ObservableCollection<Message>() };
+            Chat chatThird = new Chat { Partner = userThird, Messages = new ObservableCollection<Message>() };
 
-            Chats.Add(chat);
-            selectedChat = chat;
+            Chats.Add(chatSecond);
+            Chats.Add(chatFirst);
+            Chats.Add(chatThird);
+
+            selectedChat = chatFirst;
 
             SendMessageCommand = new RelayCommand(SendMassage, CanSendMassage);
         }

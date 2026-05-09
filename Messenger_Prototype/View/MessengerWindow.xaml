@@ -31,19 +31,15 @@
                 <TextBox Height="40" Width="230" Style="{StaticResource styleTextBox}" Tag="Поиск"/>
             </StackPanel>
 
-            <ListBox Grid.Row="1" Background="#FF181818" BorderThickness="0">
-                <StackPanel Height="60" Width="285" Orientation ="Horizontal">
-                    <Image Height="40" Width="40" Margin="10"/>
-                    <Label Height="40" Content="Stan Debilov" HorizontalAlignment="Center" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
-                </StackPanel>
-                <StackPanel Height="60" Width="285" Orientation ="Horizontal">
-                    <Image Height="40" Width="40" Margin="10"/>
-                    <Label Height="40" Content="Ya lybly linky malinky" HorizontalAlignment="Center" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
-                </StackPanel>
-                <StackPanel Height="60" Width="285" Orientation ="Horizontal">
-                    <Image Height="40" Width="40" Margin="10"/>
-                    <Label Height="40" Content="Go seks" HorizontalAlignment="Center" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
-                </StackPanel>
+            <ListBox Grid.Row="1" Background="#FF181818" BorderThickness="0" ItemsSource="{Binding Chats}" SelectedItem="{Binding selectedChat}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Height="60" Orientation ="Horizontal">
+                            <Image Height="40" Width="40" Margin="10" Source="{Binding Partner.AvatarPath}"/>
+                            <TextBlock Height="40" Text="{Binding Partner.Name}" HorizontalAlignment="Center" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
 
@@ -61,8 +57,8 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <TextBlock Text="{Binding Chats[0].Partner.Name}" FontSize="14" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
-                    <TextBlock Text="{Binding Chats[0].Partner.Status}" FontSize="14" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="{Binding selectedChat.Partner.Name}" FontSize="14" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="{Binding selectedChat.Partner.Status}" FontSize="14" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
