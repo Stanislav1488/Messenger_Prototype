@@ -47,6 +47,11 @@ namespace Messenger_Prototype.ViewModel
             Chat chatSecond = new Chat { Partner = userSecond, Messages = new ObservableCollection<Message>() };
             Chat chatThird = new Chat { Partner = userThird, Messages = new ObservableCollection<Message>() };
 
+            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "Привет, го секс с тобой, пряямо сейчас?"});
+            chatFirst.Messages.Add(new Message { IsOwn = true, Text = "Привет, ЛИночка, да я жёстко тебя хочу"});
+            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "ну тогда ко мне приходи"});
+            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "в 16:00"});
+
             Chats.Add(chatSecond);
             Chats.Add(chatFirst);
             Chats.Add(chatThird);

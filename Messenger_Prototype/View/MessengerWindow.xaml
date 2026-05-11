@@ -74,12 +74,13 @@
                 </StackPanel>
             </Grid>
 
-            <ListBox Grid.Row="1" Background="#FF232323" ItemsSource="{Binding selectedChat.Messages}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Text}"/>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
+            <ListBox Grid.Row="1" Background="#FF232323" ItemTemplate="{StaticResource MessageTemplate}" ItemsSource="{Binding selectedChat.Messages}">
+
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
             </ListBox>
 
             <Grid Grid.Row ="2" Background="#FF181818">
