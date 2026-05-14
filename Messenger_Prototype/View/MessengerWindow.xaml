@@ -74,14 +74,9 @@
                 </StackPanel>
             </Grid>
 
-            <ListBox Grid.Row="1" Background="#FF232323" ItemTemplate="{StaticResource MessageTemplate}" ItemsSource="{Binding selectedChat.Messages}">
-
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                    </Style>
-                </ListBox.ItemContainerStyle>
-            </ListBox>
+            <ScrollViewer Grid.Row="1">
+                <ItemsControl Background="#FF232323" ItemTemplate="{StaticResource MessageTemplate}" ItemsSource="{Binding selectedChat.Messages}" BorderThickness="0"/>
+            </ScrollViewer>
 
             <Grid Grid.Row ="2" Background="#FF181818">
                 <Grid.ColumnDefinitions>
