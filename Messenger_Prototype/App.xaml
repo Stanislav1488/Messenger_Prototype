@@ -9,6 +9,7 @@
                 <ResourceDictionary Source="/View/StyleTextBox.xaml"/>
                 <ResourceDictionary Source="/View/styleButton.xaml"/>
                 <ResourceDictionary Source="/View/StyleMessageTemplate.xaml"/>
+                <ResourceDictionary Source="/View/StyleScrollViewer.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
