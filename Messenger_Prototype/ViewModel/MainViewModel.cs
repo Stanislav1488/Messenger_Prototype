@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace Messenger_Prototype.ViewModel
 {
-    internal class MainViewModel : BaseViewModel
+    public class MainViewModel : BaseViewModel
     {
         public ObservableCollection<Chat> Chats { get; set; }
 
