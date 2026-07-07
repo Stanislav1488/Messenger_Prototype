@@ -10,10 +10,12 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <Resource Include="View\Images\*.png" />
   </ItemGroup>
   
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.3.11" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.2.11" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="10.0.9" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.9" />
