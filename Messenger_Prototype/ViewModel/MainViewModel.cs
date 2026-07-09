@@ -1,6 +1,8 @@
 ﻿using Messenger_Prototype.Model;
+using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Messenger_Prototype.ViewModel
@@ -9,7 +11,9 @@ namespace Messenger_Prototype.ViewModel
     {
         public ObservableCollection<Chat> Chats { get; set; }
 
+        private HubConnection _connection;
         private Chat _selectedChat;
+        private string _messageText;
         public Chat selectedChat
         {
             get { return _selectedChat; }
@@ -20,14 +24,13 @@ namespace Messenger_Prototype.ViewModel
             }
         }
 
-        private string _newMessageText;
 
-        public string newMessageText
+        public string messageText
         {
-            get { return _newMessageText; }
+            get { return _messageText; }
             set
             {
-                _newMessageText = value;
+                _messageText = value;
                 OnPropertyChanged();
                 (SendMessageCommand as RelayCommand)?.RaiseCanExecuteChanged();
             }
@@ -47,39 +50,6 @@ namespace Messenger_Prototype.ViewModel
             Chat chatSecond = new Chat { Partner = userSecond, Messages = new ObservableCollection<Message>() };
             Chat chatThird = new Chat { Partner = userThird, Messages = new ObservableCollection<Message>() };
 
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "Привет, го секс с тобой, пряямо сейчас?" });
-            chatFirst.Messages.Add(new Message { IsOwn = true, Text = "Привет, ЛИночка, да я жёстко тебя хочу" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "ну тогда ко мне приходи" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "в 16:00" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "Привет, го секс с тобой, пряямо сейчас?" });
-            chatFirst.Messages.Add(new Message { IsOwn = true, Text = "Привет, ЛИночка, да я жёстко тебя хочу" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "ну тогда ко мне приходи" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "в 16:00" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "Привет, го секс с тобой, пряямо сейчас?" });
-            chatFirst.Messages.Add(new Message { IsOwn = true, Text = "Привет, ЛИночка, да я жёстко тебя хочу" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "ну тогда ко мне приходи" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "в 16:00" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "Привет, го секс с тобой, пряямо сейчас?" });
-            chatFirst.Messages.Add(new Message { IsOwn = true, Text = "Привет, ЛИночка, да я жёстко тебя хочу" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "ну тогда ко мне приходи" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "в 16:00" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "Привет, го секс с тобой, пряямо сейчас?" });
-            chatFirst.Messages.Add(new Message { IsOwn = true, Text = "Привет, ЛИночка, да я жёстко тебя хочу" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "ну тогда ко мне приходи" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "в 16:00" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "Привет, го секс с тобой, пряямо сейчас?" });
-            chatFirst.Messages.Add(new Message { IsOwn = true, Text = "Привет, ЛИночка, да я жёстко тебя хочу" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "ну тогда ко мне приходи" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "в 16:00" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "Привет, го секс с тобой, пряямо сейчас?" });
-            chatFirst.Messages.Add(new Message { IsOwn = true, Text = "Привет, ЛИночка, да я жёстко тебя хочу" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "ну тогда ко мне приходи" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "в 16:00" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "Привет, го секс с тобой, пряямо сейчас?" });
-            chatFirst.Messages.Add(new Message { IsOwn = true, Text = "Привет, ЛИночка, да я жёстко тебя хочу" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "ну тогда ко мне приходи" });
-            chatFirst.Messages.Add(new Message { IsOwn = false, Text = "в 16:00" });
-
             Chats.Add(chatSecond);
             Chats.Add(chatFirst);
             Chats.Add(chatThird);
@@ -87,30 +57,47 @@ namespace Messenger_Prototype.ViewModel
             selectedChat = chatFirst;
 
             SendMessageCommand = new RelayCommand(SendMassage, CanSendMassage);
+            Connect();
         }
 
-        private void SendMassage(object parameter)
+        private async Task Connect()
         {
-            if (string.IsNullOrWhiteSpace(newMessageText))
+            _connection = new HubConnectionBuilder()
+                .WithUrl("http://localhost:5000/chatHub")
+                .Build();
+            _connection.On<string, string>("ReceiveMessage", (message, userName) =>
+            {
+                App.Current.Dispatcher.Invoke(() =>
+                {
+                    Message newMessage = new Message
+                    {
+                        IsOwn = userName == "You",
+                        Text = message,
+                        Timestamp = DateTime.Now
+                    };
+
+                    selectedChat.Messages.Add(newMessage);
+                });
+            });
+
+            await _connection.StartAsync();
+        }
+
+        private async void SendMassage(object parameter)
+        {
+            if (string.IsNullOrWhiteSpace(messageText))
             {
                 return;
             }
 
-            Message newMessage = new Message
-            {
-                IsOwn = true,
-                Text = newMessageText,
-                Timestamp = DateTime.Now
-            };
-
-            selectedChat.Messages.Add(newMessage);
-            selectedChat.LastMessage = newMessageText;
-            newMessageText = null;
+            await _connection.InvokeAsync("Send", messageText, "You");
+            selectedChat.LastMessage = messageText;
+            messageText = string.Empty;
         }
 
         private bool CanSendMassage(object parameter)
         {
-            return !string.IsNullOrWhiteSpace(newMessageText);
+            return !string.IsNullOrWhiteSpace(messageText);
         }
     }
 }
