@@ -1,8 +1,7 @@
 ﻿<Application x:Class="Messenger_Prototype.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Messenger_Prototype"
-             StartupUri="View/MessengerWindow.xaml">
+             xmlns:local="clr-namespace:Messenger_Prototype">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
