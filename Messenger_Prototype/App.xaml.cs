@@ -21,13 +21,13 @@ namespace Messenger_Prototype
             serverHost = new ServerHost();
             await serverHost.StartAsync();
 
-            MessengerWindow main1 = new MessengerWindow();
-            main1.Title = "Чат - окно 1";
-            main1.Show();
+            LoginWindow login1 = new LoginWindow();
+            login1.Title = "Log in - окно 1";
+            login1.Show();
 
-            MessengerWindow main2 = new MessengerWindow();
-            main2.Title = "Чат - окно 2";
-            main2.Show();
+            LoginWindow login2 = new LoginWindow();
+            login2.Title = "Log in - окно 1";
+            login2.Show();
         }
 
         protected override async void OnExit(ExitEventArgs e)

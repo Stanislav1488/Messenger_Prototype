@@ -9,6 +9,9 @@
                 <ResourceDictionary Source="/View/styleButton.xaml"/>
                 <ResourceDictionary Source="/View/StyleMessageTemplate.xaml"/>
                 <ResourceDictionary Source="/View/StyleScrollViewer.xaml"/>
+                <ResourceDictionary Source="/View/StylePasswordBox.xaml"/>
+                <ResourceDictionary Source="/View/StyleCheckBox.xaml"/>
+                <ResourceDictionary Source="/View/StyleLoginButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
