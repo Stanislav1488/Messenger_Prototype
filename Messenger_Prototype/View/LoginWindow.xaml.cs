@@ -23,5 +23,24 @@ namespace Messenger_Prototype.View
         {
             InitializeComponent();
         }
+
+        private void OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if(passwordTologin != null)
+            {
+                TextBlock hint = passwordTologin.Template.FindName("hint", passwordTologin) as TextBlock;
+                if(hint != null)
+                {
+                    if (passwordTologin.Password.Length > 0)
+                    {
+                        hint.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        hint.Visibility = Visibility.Visible;
+                    }
+                }
+            }
+        }
     }
 }

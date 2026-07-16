@@ -26,8 +26,7 @@
                 <TextBox Height="40" Margin="10" Tag="Введите логин" Style= "{StaticResource styleTextBox}"/>
                 <StackPanel Orientation="Horizontal">
                     <Grid>
-                        <PasswordBox x:Name="passwordTologin" Style="{StaticResource stylePassword}" Tag="Введите пароль" Width="386" Height="40" Margin="10" />
-                        <TextBox x:Name="passwordVisible" Style="{StaticResource styleTextBox}" Tag="Введите пароль" Width="386" Height="40" Margin="10" Visibility="Collapsed"/>
+                        <PasswordBox x:Name="passwordTologin" Style="{StaticResource stylePassword}" Tag="Введите пароль" PasswordChanged="OnPasswordChanged" Width="386" Height="40" Margin="10" />
                     </Grid>
                 </StackPanel>
                 <CheckBox Margin="10, 0, 0, 0" Style="{StaticResource styleCheckBox}"/>
