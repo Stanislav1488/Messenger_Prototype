@@ -24,11 +24,7 @@
                 <Label Content="Вход в аккаунт" HorizontalAlignment="Center" Margin="50" FontSize="20"
                FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
                 <TextBox Height="40" Margin="10" Tag="Введите логин" Style= "{StaticResource styleTextBox}"/>
-                <StackPanel Orientation="Horizontal">
-                    <Grid>
-                        <PasswordBox x:Name="passwordTologin" Style="{StaticResource stylePassword}" Tag="Введите пароль" PasswordChanged="OnPasswordChanged" Width="386" Height="40" Margin="10" />
-                    </Grid>
-                </StackPanel>
+                <PasswordBox x:Name="passwordTologin" Style="{StaticResource stylePassword}" Tag="Введите пароль" PasswordChanged="OnPasswordChanged" Height="40" Margin="10" />
                 <CheckBox Margin="10, 0, 0, 0" Style="{StaticResource styleCheckBox}"/>
                 <Button Content="Войти" Margin="20, 60, 20, 0" Style="{StaticResource styleLoginButton}"/>
             </StackPanel>
