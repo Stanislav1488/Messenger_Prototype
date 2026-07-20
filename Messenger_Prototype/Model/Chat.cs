@@ -9,7 +9,7 @@ namespace Messenger_Prototype.Model
 {
     public class Chat
     {
-        public User Partner { get; set; }
+        public Contact Partner { get; set; }
         public ObservableCollection<Message> Messages { get; set; }
         public string LastMessage { get; set; }
     }

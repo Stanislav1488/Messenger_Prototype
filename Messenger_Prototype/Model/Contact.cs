@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Messenger_Prototype.Model
 {
-    public class User
+    public class Contact
     {
         public string Name { get; set; }
         public string Status { get; set; }

@@ -42,13 +42,13 @@ namespace Messenger_Prototype.ViewModel
         {
             Chats = new ObservableCollection<Chat>();
 
-            User userFirst = new User { Name = "Линочка", Status = "online" };
-            User userSecond = new User { Name = "Егор", Status = "last seen 10 minutes ago" };
-            User userThird = new User { Name = "Ваня", Status = "last seen 1 hour ago" };
+            Contact contactFirst = new Contact { Name = "Линочка", Status = "online" };
+            Contact contactSecond = new Contact { Name = "Егор", Status = "last seen 10 minutes ago" };
+            Contact contactThird = new Contact { Name = "Ваня", Status = "last seen 1 hour ago" };
 
-            Chat chatFirst = new Chat { Partner = userFirst, Messages = new ObservableCollection<Message>() };
-            Chat chatSecond = new Chat { Partner = userSecond, Messages = new ObservableCollection<Message>() };
-            Chat chatThird = new Chat { Partner = userThird, Messages = new ObservableCollection<Message>() };
+            Chat chatFirst = new Chat { Partner = contactFirst, Messages = new ObservableCollection<Message>() };
+            Chat chatSecond = new Chat { Partner = contactSecond, Messages = new ObservableCollection<Message>() };
+            Chat chatThird = new Chat { Partner = contactThird, Messages = new ObservableCollection<Message>() };
 
             Chats.Add(chatSecond);
             Chats.Add(chatFirst);
