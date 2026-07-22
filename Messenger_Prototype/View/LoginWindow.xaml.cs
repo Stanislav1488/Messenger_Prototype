@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Messenger_Prototype.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,7 @@ namespace Messenger_Prototype.View
             if(passwordTologin != null)
             {
                 TextBlock hint = passwordTologin.Template.FindName("hint", passwordTologin) as TextBlock;
+
                 if(hint != null)
                 {
                     if (passwordTologin.Password.Length > 0)
@@ -39,6 +41,11 @@ namespace Messenger_Prototype.View
                     {
                         hint.Visibility = Visibility.Visible;
                     }
+                }
+
+                if (DataContext is LoginViewModel vm)
+                {
+                    vm.password = passwordTologin.Password;
                 }
             }
         }
