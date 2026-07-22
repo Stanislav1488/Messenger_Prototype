@@ -3,10 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodel ="clr-namespace:Messenger_Prototype.ViewModel"
         xmlns:local="clr-namespace:Messenger_Prototype.View"
         mc:Ignorable="d"
         Title="LoginWindow" Height="720" Width="900">
-    <Grid Background="#181818">
+
+    <Window.DataContext>
+        <viewmodel:LoginViewModel/>
+    </Window.DataContext>
+
+<Grid Background="#181818">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="450"/>
