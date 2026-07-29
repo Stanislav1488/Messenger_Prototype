@@ -63,8 +63,11 @@ namespace Messenger_Prototype.ViewModel
             {
                 MessengerWindow chatWindow = new MessengerWindow();
                 chatWindow.Title = $"Чат — {foundUser.Name}";
-                chatWindow.Show();
 
+                MainViewModel mainVm = new MainViewModel(foundUser);
+                chatWindow.DataContext = mainVm;
+
+                chatWindow.Show();
                 Application.Current.Windows.OfType<LoginWindow>().FirstOrDefault()?.Close();
             }
         }

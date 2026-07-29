@@ -1,8 +1,11 @@
 ﻿using Messenger_Prototype.Model;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace Messenger_Prototype.ViewModel
@@ -14,6 +17,7 @@ namespace Messenger_Prototype.ViewModel
         private HubConnection _connection;
         private Chat _selectedChat;
         private string _messageText;
+        private User _currentUser;
         public Chat selectedChat
         {
             get { return _selectedChat; }
@@ -38,23 +42,42 @@ namespace Messenger_Prototype.ViewModel
 
         public ICommand SendMessageCommand { get; }
 
-        public MainViewModel()
+        public MainViewModel(User currentUser)
         {
+            _currentUser = currentUser;
             Chats = new ObservableCollection<Chat>();
 
-            Contact contactFirst = new Contact { Name = "Линочка", Status = "online" };
-            Contact contactSecond = new Contact { Name = "Егор", Status = "last seen 10 minutes ago" };
-            Contact contactThird = new Contact { Name = "Ваня", Status = "last seen 1 hour ago" };
+            List<User> allUsers = new List<User>
+            {
+                new User {Login = "admin", Name = "Админ"},
+                new User {Login = "user", Name = "Stan"},
+                new User {Login = "lina", Name = "Лина"},
+                new User {Login = "egor", Name = "Егор"},
+            };
 
-            Chat chatFirst = new Chat { Partner = contactFirst, Messages = new ObservableCollection<Message>() };
-            Chat chatSecond = new Chat { Partner = contactSecond, Messages = new ObservableCollection<Message>() };
-            Chat chatThird = new Chat { Partner = contactThird, Messages = new ObservableCollection<Message>() };
+            var contacts = allUsers.Where(u => u.Login != _currentUser.Login).ToList();
 
-            Chats.Add(chatSecond);
-            Chats.Add(chatFirst);
-            Chats.Add(chatThird);
+            foreach (var contact in contacts)
+            {
+                Contact contactModel = new Contact()
+                {
+                    Name = contact.Name,
+                    Status = "online"
+                };
 
-            selectedChat = chatFirst;
+                Chat chat = new Chat()
+                {
+                    Partner = contactModel,
+                    Messages = new ObservableCollection<Message>()
+                };
+
+                Chats.Add(chat);
+            }
+
+            if(contacts.Count > 0)
+            {
+                selectedChat = Chats.First();
+            }
 
             SendMessageCommand = new RelayCommand(SendMassage, CanSendMassage);
             Connect();

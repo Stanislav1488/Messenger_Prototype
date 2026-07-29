@@ -26,7 +26,7 @@ namespace Messenger_Prototype
             login1.Show();
 
             LoginWindow login2 = new LoginWindow();
-            login2.Title = "Log in - окно 1";
+            login2.Title = "Log in - окно 2";
             login2.Show();
         }
 
