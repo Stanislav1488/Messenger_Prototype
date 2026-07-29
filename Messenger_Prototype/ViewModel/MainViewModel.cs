@@ -92,9 +92,11 @@ namespace Messenger_Prototype.ViewModel
             {
                 App.Current.Dispatcher.Invoke(() =>
                 {
+                    bool isOwn = userName == _currentUser.Name;
+
                     Message newMessage = new Message
                     {
-                        IsOwn = userName == "You",
+                        IsOwn = isOwn,
                         Text = message,
                         Timestamp = DateTime.Now
                     };
@@ -113,7 +115,7 @@ namespace Messenger_Prototype.ViewModel
                 return;
             }
 
-            await _connection.InvokeAsync("Send", messageText, "You");
+            await _connection.InvokeAsync("Send", messageText, _currentUser.Name);
             selectedChat.LastMessage = messageText;
             messageText = string.Empty;
         }
