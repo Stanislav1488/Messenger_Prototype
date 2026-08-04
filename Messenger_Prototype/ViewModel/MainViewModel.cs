@@ -117,8 +117,16 @@ namespace Messenger_Prototype.ViewModel
                 return;
             }
 
-            await _connection.InvokeAsync("Send", messageText, _currentUser.Login, selectedChat.Partner.Login);
+            Message newMessage = new Message
+            {
+                IsOwn = true,
+                Text = messageText,
+                Timestamp = DateTime.Now
+            };
+            selectedChat.Messages.Add(newMessage);
             selectedChat.LastMessage = messageText;
+
+            await _connection.InvokeAsync("Send", messageText, _currentUser.Login, selectedChat.Partner.Login);
             messageText = string.Empty;
         }
 
