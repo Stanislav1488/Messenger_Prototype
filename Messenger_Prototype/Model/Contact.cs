@@ -8,6 +8,7 @@ namespace Messenger_Prototype.Model
 {
     public class Contact
     {
+        public string Login { get; set; }
         public string Name { get; set; }
         public string Status { get; set; }
         public string AvatarPath { get; set; }

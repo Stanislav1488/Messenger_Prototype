@@ -62,6 +62,7 @@ namespace Messenger_Prototype.ViewModel
                 Contact contactModel = new Contact()
                 {
                     Name = contact.Name,
+                    Login = contact.Login,
                     Status = "online"
                 };
 
@@ -92,7 +93,7 @@ namespace Messenger_Prototype.ViewModel
             {
                 App.Current.Dispatcher.Invoke(() =>
                 {
-                    bool isOwn = userName == _currentUser.Name;
+                    bool isOwn = userName == _currentUser.Login;
 
                     Message newMessage = new Message
                     {
@@ -106,6 +107,7 @@ namespace Messenger_Prototype.ViewModel
             });
 
             await _connection.StartAsync();
+            await _connection.InvokeAsync("RegisterUser", _currentUser.Login);
         }
 
         private async void SendMassage(object parameter)
@@ -115,7 +117,7 @@ namespace Messenger_Prototype.ViewModel
                 return;
             }
 
-            await _connection.InvokeAsync("Send", messageText, _currentUser.Name);
+            await _connection.InvokeAsync("Send", messageText, _currentUser.Login, selectedChat.Partner.Login);
             selectedChat.LastMessage = messageText;
             messageText = string.Empty;
         }
