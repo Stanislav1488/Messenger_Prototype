@@ -17,12 +17,21 @@
                 </Style>
             </Border.Style>
 
-            <TextBlock
-                Foreground="White"
-                Text="{Binding Text}"
-                FontFamily = "Segoe UI"
-                FontSize="12"
-                TextWrapping="Wrap"/>
+            <StackPanel Orientation="Vertical">
+                <TextBlock
+                    Foreground="White"
+                    Text="{Binding Text}"
+                    FontFamily = "Segoe UI"
+                    FontSize="14"
+                    TextWrapping="Wrap"/>
+                <TextBlock
+                    Foreground="White"
+                    Text="{Binding Timestamp, StringFormat='HH:mm'}"
+                    FontFamily = "Segoe UI"
+                    FontSize="12"
+                    HorizontalAlignment="Right"/>
+            </StackPanel>
+            
         </Border>
     </DataTemplate>
 </ResourceDictionary>
