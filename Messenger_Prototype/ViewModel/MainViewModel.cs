@@ -63,7 +63,6 @@ namespace Messenger_Prototype.ViewModel
                 {
                     Name = contact.Name,
                     Login = contact.Login,
-                    Status = "online"
                 };
 
                 Chat chat = new Chat()
@@ -105,9 +104,27 @@ namespace Messenger_Prototype.ViewModel
                     selectedChat.Messages.Add(newMessage);
                 });
             });
+            _connection.On<List<string>>("UpdateOnlineUsers", (users) =>
+            {
+                App.Current.Dispatcher.Invoke(() =>
+                {
+                    foreach (var chat in Chats)
+                    {
+                        if (users.Contains(chat.Partner.Login))
+                        {
+                            chat.Partner.Status = "online";
+                        }
+                        else
+                        {
+                            chat.Partner.Status = "offline";
+                        }
+                    }
+                });
+            });
 
             await _connection.StartAsync();
             await _connection.InvokeAsync("RegisterUser", _currentUser.Login);
+            await _connection.InvokeAsync("UserConnected", _currentUser.Login);
         }
 
         private async void SendMassage(object parameter)
@@ -134,5 +151,14 @@ namespace Messenger_Prototype.ViewModel
         {
             return !string.IsNullOrWhiteSpace(messageText);
         }
+
+        //срабатывание события обновления статуса на офлайн
+        //public async Task SetOfflineStatus()
+        //{
+        //    if (_connection != null && _connection.State == HubConnectionState.Connected)
+        //    {
+        //        await _connection.InvokeAsync("UserDisconnected", _currentUser.Login);
+        //    }
+        //}
     }
 }
