@@ -6,7 +6,7 @@
                 <Style TargetType="Border">
                     <Setter Property="Background" Value="#101010"/>
                     <Setter Property="HorizontalAlignment" Value="Left"/>
-                    <Setter Property="MaxWidth" Value="300"/>
+                    <Setter Property="MaxWidth" Value="500"/>
 
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsOwn}" Value="true">
