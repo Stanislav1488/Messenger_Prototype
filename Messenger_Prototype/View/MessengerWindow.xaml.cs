@@ -24,6 +24,22 @@ namespace Messenger_Prototype.View
         public MessengerWindow()
         {
             InitializeComponent();
+
+            this.Loaded += MessengerWindow_Loaded;
+        }
+
+        private void MessengerWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            if(DataContext is MainViewModel viewModel)
+            {
+                viewModel.ScrollBotton += () =>
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        ChatScrollViewer?.ScrollToEnd();
+                    });
+                };
+            }
         }
     }
 }

@@ -82,6 +82,12 @@ namespace Messenger_Prototype.ViewModel
             SendMessageCommand = new RelayCommand(SendMassage, CanSendMassage);
             Connect();
         }
+        public event Action ScrollBotton;
+
+        public void OnScrollBotton()
+        {
+            ScrollBotton?.Invoke();
+        }
 
         private async Task Connect()
         {
@@ -102,6 +108,7 @@ namespace Messenger_Prototype.ViewModel
                     };
 
                     selectedChat.Messages.Add(newMessage);
+                    OnScrollBotton();
                 });
             });
             _connection.On<List<string>>("UpdateOnlineUsers", (users) =>
@@ -142,6 +149,8 @@ namespace Messenger_Prototype.ViewModel
             };
             selectedChat.Messages.Add(newMessage);
             selectedChat.LastMessage = messageText;
+
+            OnScrollBotton();
 
             await _connection.InvokeAsync("Send", messageText, _currentUser.Login, selectedChat.Partner.Login);
             messageText = string.Empty;
