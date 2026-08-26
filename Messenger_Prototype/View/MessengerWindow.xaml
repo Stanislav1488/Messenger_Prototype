@@ -31,7 +31,10 @@
                     <DataTemplate>
                         <StackPanel Height="60" Orientation ="Horizontal">
                             <Image Height="40" Width="40" Margin="10" Source="{Binding Partner.AvatarPath}"/>
-                            <TextBlock Height="40" Text="{Binding Partner.Name}" HorizontalAlignment="Center" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Partner.Name}" HorizontalAlignment="Left" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
+                                <TextBlock Margin="0, 5" Text="{Binding LastMessage}" Foreground="White" HorizontalAlignment="Left" FontSize="12" FontFamily="Segoe UI" FontWeight="Bold"/>
+                            </StackPanel>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

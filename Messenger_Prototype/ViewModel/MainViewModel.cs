@@ -108,6 +108,7 @@ namespace Messenger_Prototype.ViewModel
                     };
 
                     selectedChat.Messages.Add(newMessage);
+                    selectedChat.LastMessage = message;
                     OnScrollBotton();
                 });
             });
