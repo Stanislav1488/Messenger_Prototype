@@ -33,7 +33,7 @@
                             <Image Height="40" Width="40" Margin="10" Source="{Binding Partner.AvatarPath}"/>
                             <StackPanel>
                                 <TextBlock Text="{Binding Partner.Name}" HorizontalAlignment="Left" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
-                                <TextBlock Margin="0, 5" Text="{Binding LastMessage}" Foreground="White" HorizontalAlignment="Left" FontSize="12" FontFamily="Segoe UI" FontWeight="Bold"/>
+                                <TextBlock Margin="0, 5" Text="{Binding LastMessage}" Foreground="#D0D0D0" HorizontalAlignment="Left" FontSize="12" FontFamily="Segoe UI" FontWeight="Bold"/>
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>

@@ -25,7 +25,7 @@
                     FontSize="14"
                     TextWrapping="Wrap"/>
                 <TextBlock
-                    Foreground="White"
+                    Foreground="#D4F5F0"
                     Text="{Binding Timestamp, StringFormat='HH:mm'}"
                     FontFamily = "Segoe UI"
                     FontSize="12"
