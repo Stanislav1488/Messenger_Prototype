@@ -10,7 +10,7 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
     </Window.Resources>
-
+    <!--Основное окно-->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300" />
@@ -107,7 +107,7 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        
+        <!--Профиль-->
         <Grid Grid.Column="0" Grid.ColumnSpan="2"
               Visibility="{Binding isOpenProfile, Converter={StaticResource BoolToVisConverter}}">
 

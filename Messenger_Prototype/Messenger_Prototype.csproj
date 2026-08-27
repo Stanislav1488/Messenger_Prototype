@@ -15,6 +15,11 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Content Include="..\..\..\..\..\Downloads\close.png" Link="View\Images\close.png" />
+    <Content Include="..\..\..\..\..\Downloads\edit.png" Link="View\Images\edit.png" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.3.11" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.2.11" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="10.0.9" />
