@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1200">
 
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300" />
@@ -20,8 +24,8 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <Button Height="40" Width="40" Margin="10" Style="{StaticResource styleButton}">
-                    <Image Height="24" Width="24" Source="/View/Images/menu.png"/>
+                <Button Height="40" Width="40" Margin="10" Style="{StaticResource styleButton}" Command="{Binding OpenProfileCommand}">
+                    <Image Height="24" Width="24" Source="/View/Images/menu.png" />
                 </Button>
                 <TextBox Height="40" Width="230" Style="{StaticResource styleTextBox}" Tag="Поиск"/>
             </StackPanel>
@@ -103,5 +107,28 @@
                 </StackPanel>
             </Grid>
         </Grid>
+        
+        <Grid Grid.Column="0" Grid.ColumnSpan="2"
+              Visibility="{Binding isOpenProfile, Converter={StaticResource BoolToVisConverter}}">
+
+            <Grid Background="#99000000">
+                <Grid.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding CloseProfileCommand}"/>
+                </Grid.InputBindings>
+            </Grid>
+            
+            <Border HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Height="600"
+                    Width="400"
+                    CornerRadius="16"
+                    Background="#FF232323">
+                
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.4" Color="Black"/>
+                </Border.Effect>
+            </Border>
+        </Grid>
+            
     </Grid>
 </Window>

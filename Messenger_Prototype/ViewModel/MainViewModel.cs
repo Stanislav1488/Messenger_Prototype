@@ -18,6 +18,8 @@ namespace Messenger_Prototype.ViewModel
         private Chat _selectedChat;
         private string _messageText;
         private User _currentUser;
+        private bool _isOpenProfile;
+
         public Chat selectedChat
         {
             get { return _selectedChat; }
@@ -27,8 +29,6 @@ namespace Messenger_Prototype.ViewModel
                 OnPropertyChanged(nameof(selectedChat));
             }
         }
-
-
         public string messageText
         {
             get { return _messageText; }
@@ -39,8 +39,19 @@ namespace Messenger_Prototype.ViewModel
                 (SendMessageCommand as RelayCommand)?.RaiseCanExecuteChanged();
             }
         }
+        public bool isOpenProfile
+        {
+            get { return _isOpenProfile; }
+            set
+            {
+                _isOpenProfile = value;
+                OnPropertyChanged(nameof(isOpenProfile));
+            }
+        }
 
         public ICommand SendMessageCommand { get; }
+        public ICommand OpenProfileCommand { get; }
+        public ICommand CloseProfileCommand { get; }
 
         public MainViewModel(User currentUser)
         {
@@ -79,7 +90,10 @@ namespace Messenger_Prototype.ViewModel
                 selectedChat = Chats.First();
             }
 
+            OpenProfileCommand = new RelayCommand(OpenProfile);
+            CloseProfileCommand = new RelayCommand(CloseProfile);
             SendMessageCommand = new RelayCommand(SendMassage, CanSendMassage);
+
             Connect();
         }
         public event Action ScrollBotton;
@@ -155,6 +169,16 @@ namespace Messenger_Prototype.ViewModel
 
             await _connection.InvokeAsync("Send", messageText, _currentUser.Login, selectedChat.Partner.Login);
             messageText = string.Empty;
+        }
+
+        private void OpenProfile(object parameter)
+        {
+            isOpenProfile = true;
+        }
+
+        private void CloseProfile(object parameter)
+        {
+            isOpenProfile = false;
         }
 
         private bool CanSendMassage(object parameter)
