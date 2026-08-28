@@ -107,7 +107,7 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        
+
         <Grid Grid.Column="0" Grid.ColumnSpan="2"
               Visibility="{Binding isOpenProfile, Converter={StaticResource BoolToVisConverter}}">
 
@@ -116,19 +116,32 @@
                     <MouseBinding MouseAction="LeftClick" Command="{Binding CloseProfileCommand}"/>
                 </Grid.InputBindings>
             </Grid>
-            
+
             <Border HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Height="600"
                     Width="400"
                     CornerRadius="16"
                     Background="#FF232323">
-                
+
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.4" Color="Black"/>
                 </Border.Effect>
+
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button  Height="40" Width="40" Style="{StaticResource styleButton}" Command="{Binding CloseProfileCommand}">
+                            <Image Height="24" Width="24" Source="/View/Images/close.png"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
             </Border>
         </Grid>
-            
+
     </Grid>
 </Window>
