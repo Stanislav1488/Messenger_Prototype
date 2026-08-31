@@ -124,21 +124,32 @@
                     CornerRadius="16"
                     Background="#FF232323">
 
-                <Border.Effect>
-                    <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.4" Color="Black"/>
-                </Border.Effect>
-
-                <Grid Margin="10">
+                <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="50"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
                         <Button  Height="40" Width="40" Style="{StaticResource styleButton}" Command="{Binding CloseProfileCommand}">
                             <Image Height="24" Width="24" Source="/View/Images/close.png"/>
                         </Button>
                     </StackPanel>
+
+                    <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" Margin="0,0,0,10">
+                        <Border Width="100" Height="100" CornerRadius="50" Background="#A689E1" Margin="10"/>
+                        <TextBlock Text="{Binding currentUser.Name}"  FontSize="14" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding currentUser.Status}"  FontSize="14" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                    </StackPanel>
+
+                    <Border Grid.Row="2" Background="#FF181818" CornerRadius="0,0,16,16">
+                        <StackPanel Margin="10" HorizontalAlignment="Left">
+                            <TextBlock Text ="{Binding currentUser.Login, StringFormat='@\{0\}'}" FontSize="14" FontFamily="Segoe UI" FontWeight="Bold" Foreground="#3FC1B0"/>
+                            <TextBlock Text="Имя пользователя" FontSize="14" FontFamily="Segoe UI" FontWeight="Bold" Foreground="#343434"/>
+                        </StackPanel>
+                    </Border>
+
                 </Grid>
             </Border>
         </Grid>

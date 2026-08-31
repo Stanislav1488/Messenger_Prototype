@@ -42,7 +42,7 @@ namespace Messenger_Prototype.ViewModel
         private List<User> _users = new List<User>
         {
             new User { Login = "admin", Password = "123", Name = "Админ"},
-            new User { Login = "user", Password = "123", Name = "Пользователь"}
+            new User { Login = "user", Password = "123", Name = "Stan"}
         };
 
         public LoginViewModel()

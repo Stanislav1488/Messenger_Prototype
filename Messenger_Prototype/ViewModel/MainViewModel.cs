@@ -39,6 +39,15 @@ namespace Messenger_Prototype.ViewModel
                 (SendMessageCommand as RelayCommand)?.RaiseCanExecuteChanged();
             }
         }
+        public User currentUser
+        {
+            get => _currentUser;
+            set
+            {
+                _currentUser = value;
+                OnPropertyChanged(nameof(currentUser));
+            }
+        }
         public bool isOpenProfile
         {
             get { return _isOpenProfile; }
@@ -140,6 +149,14 @@ namespace Messenger_Prototype.ViewModel
                         {
                             chat.Partner.Status = "offline";
                         }
+                    }
+
+                    if (currentUser != null)
+                    {
+                        if (users.Contains(currentUser.Login))
+                            currentUser.Status = "online";
+                        else
+                            currentUser.Status = "offline";
                     }
                 });
             });
