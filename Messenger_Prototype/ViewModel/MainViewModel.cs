@@ -18,6 +18,7 @@ namespace Messenger_Prototype.ViewModel
         private Chat _selectedChat;
         private string _messageText;
         private User _currentUser;
+        private IProfileUser _selectedProfileUser;
         private bool _isOpenProfile;
 
         public Chat selectedChat
@@ -39,13 +40,13 @@ namespace Messenger_Prototype.ViewModel
                 (SendMessageCommand as RelayCommand)?.RaiseCanExecuteChanged();
             }
         }
-        public User currentUser
+        public IProfileUser selectedProfileUser
         {
-            get => _currentUser;
+            get{return _selectedProfileUser;}
             set
             {
-                _currentUser = value;
-                OnPropertyChanged(nameof(currentUser));
+                _selectedProfileUser = value;
+                OnPropertyChanged(nameof(selectedProfileUser));
             }
         }
         public bool isOpenProfile
@@ -59,7 +60,8 @@ namespace Messenger_Prototype.ViewModel
         }
 
         public ICommand SendMessageCommand { get; }
-        public ICommand OpenProfileCommand { get; }
+        public ICommand OpenMyProfileCommand { get; }
+        public ICommand OpenPartnerProfileCommand { get; }
         public ICommand CloseProfileCommand { get; }
 
         public MainViewModel(User currentUser)
@@ -99,7 +101,8 @@ namespace Messenger_Prototype.ViewModel
                 selectedChat = Chats.First();
             }
 
-            OpenProfileCommand = new RelayCommand(OpenProfile);
+            OpenMyProfileCommand = new RelayCommand(OpenMyProfile);
+            OpenPartnerProfileCommand = new RelayCommand(OpenPartnerProfile);
             CloseProfileCommand = new RelayCommand(CloseProfile);
             SendMessageCommand = new RelayCommand(SendMassage, CanSendMassage);
 
@@ -151,12 +154,12 @@ namespace Messenger_Prototype.ViewModel
                         }
                     }
 
-                    if (currentUser != null)
+                    if (_currentUser != null)
                     {
-                        if (users.Contains(currentUser.Login))
-                            currentUser.Status = "online";
+                        if (users.Contains(_currentUser.Login))
+                            _currentUser.Status = "online";
                         else
-                            currentUser.Status = "offline";
+                            _currentUser.Status = "offline";
                     }
                 });
             });
@@ -188,14 +191,22 @@ namespace Messenger_Prototype.ViewModel
             messageText = string.Empty;
         }
 
-        private void OpenProfile(object parameter)
+        private void OpenMyProfile(object parameter)
         {
+            selectedProfileUser = _currentUser;
+            isOpenProfile = true;
+        }
+
+        private void OpenPartnerProfile(object parameter)
+        {
+            selectedProfileUser = selectedChat.Partner;
             isOpenProfile = true;
         }
 
         private void CloseProfile(object parameter)
         {
             isOpenProfile = false;
+            selectedProfileUser = null;
         }
 
         private bool CanSendMassage(object parameter)

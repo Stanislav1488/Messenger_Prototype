@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Messenger_Prototype.Model
 {
-    public class User : BaseViewModel
+    public class User : BaseViewModel, IProfileUser
     {
         private string status;
         public string Login { get; set; }
