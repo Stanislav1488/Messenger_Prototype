@@ -112,14 +112,31 @@
             </Grid>
         </Grid>
 
-        <Grid Grid.Column="0" Grid.ColumnSpan="2"
-              Visibility="{Binding isOpenProfile, Converter={StaticResource BoolToVisConverter}}">
+        <Grid x:Name="ProfileRoot" Grid.Column="0" Grid.ColumnSpan="2"
+              Visibility="{Binding isOpenProfile, Converter={StaticResource BoolToVisConverter}}"
+              Focusable="True">
+
+             <Grid.InputBindings>
+                <KeyBinding Key="Escape" Command="{Binding CloseProfileCommand}"/>
+            </Grid.InputBindings>
+
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <Trigger Property="Visibility" Value="Visible">
+                            <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=ProfileRoot}"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
 
             <Grid Background="#99000000">
                 <Grid.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding CloseProfileCommand}"/>
                 </Grid.InputBindings>
             </Grid>
+
+            
 
             <Border HorizontalAlignment="Center"
                     VerticalAlignment="Center"
