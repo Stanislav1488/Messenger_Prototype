@@ -159,7 +159,9 @@
                     </StackPanel>
 
                     <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" Margin="0,0,0,10">
-                        <Border Width="100" Height="100" CornerRadius="50" Background="#A689E1" Margin="10"/>
+                        <Border Width="100" Height="100" CornerRadius="50" Background="#A689E1" Margin="10">
+                            <TextBlock Text ="{Binding selectedProfileUser.Name[0]}" FontSize="32" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
                         <TextBlock Text="{Binding selectedProfileUser.Name}"  FontSize="14" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
                         <TextBlock Text="{Binding selectedProfileUser.Status}"  FontSize="14" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
                     </StackPanel>
