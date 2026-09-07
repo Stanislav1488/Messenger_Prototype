@@ -32,7 +32,7 @@ namespace Messenger_Prototype.View
         {
             if(DataContext is MainViewModel viewModel)
             {
-                viewModel.ScrollBotton += () =>
+                viewModel.ScrollBottom += () =>
                 {
                     Dispatcher.Invoke(() =>
                     {

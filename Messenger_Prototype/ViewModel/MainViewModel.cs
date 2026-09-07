@@ -108,11 +108,11 @@ namespace Messenger_Prototype.ViewModel
 
             Connect();
         }
-        public event Action ScrollBotton;
+        public event Action ScrollBottom;
 
-        public void OnScrollBotton()
+        public void OnScrollBottom()
         {
-            ScrollBotton?.Invoke();
+            ScrollBottom?.Invoke();
         }
 
         private async Task Connect()
@@ -135,7 +135,7 @@ namespace Messenger_Prototype.ViewModel
 
                     selectedChat.Messages.Add(newMessage);
                     selectedChat.LastMessage = message;
-                    OnScrollBotton();
+                    OnScrollBottom();
                 });
             });
             _connection.On<List<string>>("UpdateOnlineUsers", (users) =>
@@ -185,7 +185,7 @@ namespace Messenger_Prototype.ViewModel
             selectedChat.Messages.Add(newMessage);
             selectedChat.LastMessage = messageText;
 
-            OnScrollBotton();
+            OnScrollBottom();
 
             await _connection.InvokeAsync("Send", messageText, _currentUser.Login, selectedChat.Partner.Login);
             messageText = string.Empty;
