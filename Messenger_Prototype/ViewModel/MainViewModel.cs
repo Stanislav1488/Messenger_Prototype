@@ -104,7 +104,7 @@ namespace Messenger_Prototype.ViewModel
             OpenMyProfileCommand = new RelayCommand(OpenMyProfile);
             OpenPartnerProfileCommand = new RelayCommand(OpenPartnerProfile);
             CloseProfileCommand = new RelayCommand(CloseProfile);
-            SendMessageCommand = new RelayCommand(SendMassage, CanSendMassage);
+            SendMessageCommand = new RelayCommand(SendMessage, CanSendMessage);
 
             Connect();
         }
@@ -169,7 +169,7 @@ namespace Messenger_Prototype.ViewModel
             await _connection.InvokeAsync("UserConnected", _currentUser.Login);
         }
 
-        private async void SendMassage(object parameter)
+        private async void SendMessage(object parameter)
         {
             if (string.IsNullOrWhiteSpace(messageText))
             {
@@ -209,7 +209,7 @@ namespace Messenger_Prototype.ViewModel
             selectedProfileUser = null;
         }
 
-        private bool CanSendMassage(object parameter)
+        private bool CanSendMessage(object parameter)
         {
             return !string.IsNullOrWhiteSpace(messageText);
         }
