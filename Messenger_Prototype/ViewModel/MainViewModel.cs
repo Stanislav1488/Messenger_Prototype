@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace Messenger_Prototype.ViewModel
@@ -42,7 +41,7 @@ namespace Messenger_Prototype.ViewModel
         }
         public IProfileUser selectedProfileUser
         {
-            get{return _selectedProfileUser;}
+            get { return _selectedProfileUser; }
             set
             {
                 _selectedProfileUser = value;
@@ -96,7 +95,7 @@ namespace Messenger_Prototype.ViewModel
                 Chats.Add(chat);
             }
 
-            if(contacts.Count > 0)
+            if (contacts.Count > 0)
             {
                 selectedChat = Chats.First();
             }

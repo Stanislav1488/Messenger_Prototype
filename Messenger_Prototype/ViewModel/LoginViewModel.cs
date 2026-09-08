@@ -1,12 +1,9 @@
-﻿using System;
+﻿using Messenger_Prototype.Model;
+using Messenger_Prototype.View;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Messenger_Prototype.View;
-using Messenger_Prototype.Model;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Messenger_Prototype.ViewModel
 {
@@ -52,14 +49,14 @@ namespace Messenger_Prototype.ViewModel
 
         private void Login(object parameter)
         {
-            if(string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
             {
                 return;
             }
 
             User foundUser = _users.FirstOrDefault(u => u.Login == login && u.Password == password);
 
-            if(foundUser != null)
+            if (foundUser != null)
             {
                 MessengerWindow chatWindow = new MessengerWindow();
                 chatWindow.Title = $"Чат — {foundUser.Name}";
