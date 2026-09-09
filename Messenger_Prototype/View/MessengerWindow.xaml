@@ -33,13 +33,25 @@
             <ListBox Grid.Row="1" Background="#FF181818" BorderThickness="0" ItemsSource="{Binding Chats}" SelectedItem="{Binding selectedChat}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Height="60" Orientation ="Horizontal">
-                            <Image Height="40" Width="40" Margin="10" Source="{Binding Partner.AvatarPath}"/>
-                            <StackPanel>
-                                <TextBlock Text="{Binding Partner.Name}" HorizontalAlignment="Left" FontSize="16" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
-                                <TextBlock Margin="0, 5" Text="{Binding LastMessage}" Foreground="#D0D0D0" HorizontalAlignment="Left" FontSize="12" FontFamily="Segoe UI" FontWeight="Bold"/>
-                            </StackPanel>
-                        </StackPanel>
+                        <Grid Height="60" Width="280" Margin="0,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Column="0" Height="40" Width="40" HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding Partner.AvatarPath}"/>
+
+                            <Grid Grid.Column="1" Margin="5,0,5,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Text="{Binding Partner.Name}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" FontFamily="Segoe UI" FontWeight="Bold" Foreground="White"/>
+                                <TextBlock Grid.Row="0" Text="{Binding LastMessageTime, StringFormat='HH:mm'}" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="11" FontFamily="Segoe UI"  FontWeight="Bold" Foreground="#D0D0D0 "/>
+                                <TextBlock Grid.Row="1" Text="{Binding LastMessage}" Margin="0,4,0,0" Foreground="#D0D0D0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12" FontFamily="Segoe UI"/>
+                            </Grid>
+                        </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

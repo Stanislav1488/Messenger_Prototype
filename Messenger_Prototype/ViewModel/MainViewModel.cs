@@ -134,6 +134,7 @@ namespace Messenger_Prototype.ViewModel
 
                     selectedChat.Messages.Add(newMessage);
                     selectedChat.LastMessage = message;
+                    selectedChat.LastMessageTime = newMessage.Timestamp.ToString("HH:mm");
                     OnScrollBottom();
                 });
             });
@@ -183,6 +184,7 @@ namespace Messenger_Prototype.ViewModel
             };
             selectedChat.Messages.Add(newMessage);
             selectedChat.LastMessage = messageText;
+            selectedChat.LastMessageTime = newMessage.Timestamp.ToString("HH:mm");
 
             OnScrollBottom();
 
