@@ -39,6 +39,18 @@ namespace Messenger_Prototype.View
                         ChatScrollViewer?.ScrollToEnd();
                     });
                 };
+
+                viewModel.PropertyChanged += (s, args) =>
+                {
+                    if (args.PropertyName == nameof(viewModel.selectedChat))
+                    {
+                        Dispatcher.Invoke(() =>
+                        {
+                            // MessageTextBox — это имя твоего TextBox для ввода текста сообщения
+                            MessageTextBox?.Focus();
+                        });
+                    }
+                };
             }
         }
     }
