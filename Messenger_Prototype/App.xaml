@@ -5,13 +5,13 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/View/StyleTextBox.xaml"/>
-                <ResourceDictionary Source="/View/styleButton.xaml"/>
-                <ResourceDictionary Source="/View/StyleMessageTemplate.xaml"/>
-                <ResourceDictionary Source="/View/StyleScrollViewer.xaml"/>
-                <ResourceDictionary Source="/View/StylePasswordBox.xaml"/>
-                <ResourceDictionary Source="/View/StyleCheckBox.xaml"/>
-                <ResourceDictionary Source="/View/StyleLoginButton.xaml"/>
+                <ResourceDictionary Source="/Messenger_Prototype;component/View/StyleTextBox.xaml"/>
+                <ResourceDictionary Source="/Messenger_Prototype;component/View/styleButton.xaml"/>
+                <ResourceDictionary Source="/Messenger_Prototype;component/View/StyleMessageTemplate.xaml"/>
+                <ResourceDictionary Source="/Messenger_Prototype;component/View/StyleScrollViewer.xaml"/>
+                <ResourceDictionary Source="/Messenger_Prototype;component/View/StylePasswordBox.xaml"/>
+                <ResourceDictionary Source="/Messenger_Prototype;component/View/StyleCheckBox.xaml"/>
+                <ResourceDictionary Source="/Messenger_Prototype;component/View/StyleLoginButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
