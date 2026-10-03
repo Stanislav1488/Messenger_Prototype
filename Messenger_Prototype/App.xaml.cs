@@ -1,4 +1,6 @@
-﻿using Messenger_Prototype.Services;
+﻿using Messenger_Prototype.Data;
+using Messenger_Prototype.Model.Entities;
+using Messenger_Prototype.Services;
 using Messenger_Prototype.View;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,20 @@ namespace Messenger_Prototype
 
             serverHost = new ServerHost();
             await serverHost.StartAsync();
+
+            using var db = new AppDdContext();
+            db.Database.EnsureCreated();
+
+            if (!db.Users.Any())
+            {
+                db.Users.Add(new UserEntity { Login = "admin", Password = "123", Name = "Админ", Status = "offline" });
+                db.Users.Add(new UserEntity { Login = "user", Password = "123", Name = "Стас", Status = "offline" });
+                db.Users.Add(new UserEntity { Login = "lina", Password = "123", Name = "Лина", Status = "offline" });
+                db.Users.Add(new UserEntity { Login = "egor", Password = "123", Name = "Егор", Status = "offline" });
+                db.SaveChanges();
+            }
+            var count = db.Users.Count();
+            MessageBox.Show($"Пользователей в БД: {count}");
 
             LoginWindow login1 = new LoginWindow();
             login1.Title = "Log in - окно 1";

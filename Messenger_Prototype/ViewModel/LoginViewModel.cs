@@ -54,6 +54,8 @@ namespace Messenger_Prototype.ViewModel
                 return;
             }
 
+
+
             User foundUser = _users.FirstOrDefault(u => u.Login == login && u.Password == password);
 
             if (foundUser != null)
