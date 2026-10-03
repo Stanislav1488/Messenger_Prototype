@@ -34,8 +34,6 @@ namespace Messenger_Prototype
                 db.Users.Add(new UserEntity { Login = "egor", Password = "123", Name = "Егор", Status = "offline" });
                 db.SaveChanges();
             }
-            var count = db.Users.Count();
-            MessageBox.Show($"Пользователей в БД: {count}");
 
             LoginWindow login1 = new LoginWindow();
             login1.Title = "Log in - окно 1";

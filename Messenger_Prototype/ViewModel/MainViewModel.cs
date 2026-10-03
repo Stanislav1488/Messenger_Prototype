@@ -1,5 +1,9 @@
-﻿using Messenger_Prototype.Model;
+﻿using Messenger_Prototype.Data;
+using Messenger_Prototype.Model;
+using Messenger_Prototype.Model.Entities;
+using Messenger_Prototype.Services;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.DependencyModel.Resolution;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -68,23 +72,17 @@ namespace Messenger_Prototype.ViewModel
             _currentUser = currentUser;
             Chats = new ObservableCollection<Chat>();
 
-            List<User> allUsers = new List<User>
-            {
-                new User {Login = "admin", Name = "Админ"},
-                new User {Login = "user", Name = "Stan"},
-                new User {Login = "lina", Name = "Лина"},
-                new User {Login = "egor", Name = "Егор"},
-            };
 
-            var contacts = allUsers.Where(u => u.Login != _currentUser.Login).ToList();
+            using var db = new AppDdContext();
+            var contacts = db.Users.Where(u => u.Login != _currentUser.Login).ToList();
 
             foreach (var contact in contacts)
             {
-                Contact contactModel = new Contact()
+                Contact contactModel = Mapper.ToUiContact(new ContactEntity
                 {
                     Name = contact.Name,
                     Login = contact.Login,
-                };
+                });
 
                 Chat chat = new Chat()
                 {

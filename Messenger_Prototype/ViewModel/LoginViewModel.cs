@@ -1,4 +1,6 @@
-﻿using Messenger_Prototype.Model;
+﻿using Messenger_Prototype.Data;
+using Messenger_Prototype.Model;
+using Messenger_Prototype.Services;
 using Messenger_Prototype.View;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,11 +38,11 @@ namespace Messenger_Prototype.ViewModel
 
         public ICommand LoginCommand { get; }
 
-        private List<User> _users = new List<User>
-        {
-            new User { Login = "admin", Password = "123", Name = "Админ"},
-            new User { Login = "user", Password = "123", Name = "Stan"}
-        };
+        //private List<User> _users = new List<User>
+        //{
+        //    new User { Login = "admin", Password = "123", Name = "Админ"},
+        //    new User { Login = "user", Password = "123", Name = "Stan"}
+        //};
 
         public LoginViewModel()
         {
@@ -55,15 +57,17 @@ namespace Messenger_Prototype.ViewModel
             }
 
 
-
-            User foundUser = _users.FirstOrDefault(u => u.Login == login && u.Password == password);
+            using var db = new AppDdContext();
+            var foundUser = db.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
 
             if (foundUser != null)
             {
-                MessengerWindow chatWindow = new MessengerWindow();
-                chatWindow.Title = $"Чат — {foundUser.Name}";
+                User uiUser = Mapper.ToUiUser(foundUser);
 
-                MainViewModel mainVm = new MainViewModel(foundUser);
+                MessengerWindow chatWindow = new MessengerWindow();
+                chatWindow.Title = $"Чат — {uiUser.Name}";
+
+                MainViewModel mainVm = new MainViewModel(uiUser);
                 chatWindow.DataContext = mainVm;
 
                 chatWindow.Show();
