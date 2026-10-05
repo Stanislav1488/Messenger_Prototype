@@ -32,5 +32,6 @@ namespace Messenger_Prototype.Model
                 OnPropertyChanged(nameof(LastMessageTime));
             }
         }
+        public int Id { get; internal set; }
     }
 }

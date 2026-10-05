@@ -22,5 +22,7 @@ namespace Messenger_Prototype.Model
                 OnPropertyChanged(nameof(Status));
             }
         }
+
+        public int Id { get; internal set; }
     }
 }

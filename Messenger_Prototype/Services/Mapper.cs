@@ -70,5 +70,16 @@ namespace Messenger_Prototype.Services
                 ChatId = chatId
             };
         }
+
+        public static Chat ToUiChat(ChatEntity chatEntity, ContactEntity contactEntity)
+        {
+            return new Chat
+            {
+                Id = chatEntity.Id,
+                Partner = ToUiContact(contactEntity),
+                Messages = new System.Collections.ObjectModel.ObservableCollection<Message>(),
+                LastMessage = chatEntity.LastMessage,
+            };
+        }
     }
 }

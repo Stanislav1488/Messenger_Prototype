@@ -2,6 +2,7 @@
 using Messenger_Prototype.Model;
 using Messenger_Prototype.Model.Entities;
 using Messenger_Prototype.Services;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.DependencyModel.Resolution;
 using System;
@@ -72,28 +73,59 @@ namespace Messenger_Prototype.ViewModel
             _currentUser = currentUser;
             Chats = new ObservableCollection<Chat>();
 
+            using var db = new AppDbContext();
 
-            using var db = new AppDdContext();
-            var contacts = db.Users.Where(u => u.Login != _currentUser.Login).ToList();
+            var chatsFromDb = db.Chats.Where(u => u.UserId == currentUser.Id).ToList();
 
-            foreach (var contact in contacts)
+            if (chatsFromDb.Count == 0)
             {
-                Contact contactModel = Mapper.ToUiContact(new ContactEntity
-                {
-                    Name = contact.Name,
-                    Login = contact.Login,
-                });
+                var allUsers = db.Users.Where(u => u.Login != _currentUser.Login).ToList();
 
-                Chat chat = new Chat()
+                foreach (var userEntity in allUsers)
                 {
-                    Partner = contactModel,
-                    Messages = new ObservableCollection<Message>()
-                };
+                    var newChatEntity = new ChatEntity
+                    {
+                        UserId = currentUser.Id,
+                        ContactId = userEntity.Id,
+                        LastMessage = ""
+                    };
+                    db.Chats.Add(newChatEntity);
+                    db.SaveChanges();
 
+                    chatsFromDb.Add(newChatEntity);
+                }
+            }
+
+            foreach (var chatEntity in chatsFromDb)
+            {
+                var contactEntity = db.Contacts.FirstOrDefault(c => c.Id == chatEntity.ContactId);
+
+                if(contactEntity == null)
+                {
+                    var userEntity = db.Users.FirstOrDefault(u => u.Id == chatEntity.ContactId);
+
+                    if(userEntity != null)
+                    {
+                        contactEntity = new ContactEntity
+                        {
+                            Login = userEntity.Login,
+                            Name = userEntity.Name,
+                            Status = userEntity.Status,
+                            AvatarPath = ""
+                        };
+                        db.Contacts.Add(contactEntity);
+                        db.SaveChanges();
+                    }
+                }
+
+                if (contactEntity == null) continue;
+
+                Chat chat = Mapper.ToUiChat(chatEntity, contactEntity);
+                chat.Id = chatEntity.Id;
                 Chats.Add(chat);
             }
 
-            if (contacts.Count > 0)
+            if (Chats.Count > 0)
             {
                 selectedChat = Chats.First();
             }
@@ -180,6 +212,19 @@ namespace Messenger_Prototype.ViewModel
                 Text = messageText,
                 Timestamp = DateTime.Now
             };
+
+            using var db = new AppDbContext();
+            var messageEntity = new MessageEntity
+            {
+                Text = messageText,
+                UserName = _currentUser.Name,
+                IsOwn = true,
+                Timestamp = DateTime.Now,
+                ChatId = selectedChat.Id
+            };
+            db.Messages.Add(messageEntity);
+            db.SaveChanges();
+
             selectedChat.Messages.Add(newMessage);
             selectedChat.LastMessage = messageText;
             selectedChat.LastMessageTime = newMessage.Timestamp.ToString("HH:mm");

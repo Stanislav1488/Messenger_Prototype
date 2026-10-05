@@ -23,7 +23,7 @@ namespace Messenger_Prototype
             serverHost = new ServerHost();
             await serverHost.StartAsync();
 
-            using var db = new AppDdContext();
+            using var db = new AppDbContext();
             db.Database.EnsureCreated();
 
             if (!db.Users.Any())

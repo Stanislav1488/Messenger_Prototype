@@ -57,7 +57,7 @@ namespace Messenger_Prototype.ViewModel
             }
 
 
-            using var db = new AppDdContext();
+            using var db = new AppDbContext();
             var foundUser = db.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
 
             if (foundUser != null)

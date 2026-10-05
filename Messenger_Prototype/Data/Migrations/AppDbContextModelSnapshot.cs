@@ -3,19 +3,16 @@ using System;
 using Messenger_Prototype.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
 namespace Messenger_Prototype.Migrations
 {
-    [DbContext(typeof(AppDdContext))]
-    [Migration("20260921185253_InitialCreate")]
-    partial class InitialCreate
+    [DbContext(typeof(AppDbContext))]
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.31");
@@ -26,18 +23,19 @@ namespace Messenger_Prototype.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Contact")
+                    b.Property<int>("ContactId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("LastMessage")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("LastMessage")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Chat");
+                    b.ToTable("Chats");
                 });
 
             modelBuilder.Entity("Messenger_Prototype.Model.Entities.ContactEntity", b =>
