@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Messenger_Prototype.ViewModel
@@ -98,30 +99,26 @@ namespace Messenger_Prototype.ViewModel
 
             foreach (var chatEntity in chatsFromDb)
             {
-                var contactEntity = db.Contacts.FirstOrDefault(c => c.Id == chatEntity.ContactId);
+                var userEntity = db.Users.FirstOrDefault(c => c.Id == chatEntity.ContactId);
 
-                if(contactEntity == null)
+                if (userEntity == null) continue;
+
+                Contact contactModel = new Contact
                 {
-                    var userEntity = db.Users.FirstOrDefault(u => u.Id == chatEntity.ContactId);
+                    AvatarPath = "",
+                    Login = userEntity.Login,
+                    Name = userEntity.Name,
+                    Status = userEntity.Status
+                };
 
-                    if(userEntity != null)
-                    {
-                        contactEntity = new ContactEntity
-                        {
-                            Login = userEntity.Login,
-                            Name = userEntity.Name,
-                            Status = userEntity.Status,
-                            AvatarPath = ""
-                        };
-                        db.Contacts.Add(contactEntity);
-                        db.SaveChanges();
-                    }
-                }
-
-                if (contactEntity == null) continue;
-
-                Chat chat = Mapper.ToUiChat(chatEntity, contactEntity);
-                chat.Id = chatEntity.Id;
+                Chat chat = new Chat
+                {
+                    Id = chatEntity.Id,
+                    LastMessage = "",
+                    Partner = contactModel,
+                    Messages = new ObservableCollection<Message>()
+                };
+                
                 Chats.Add(chat);
             }
 

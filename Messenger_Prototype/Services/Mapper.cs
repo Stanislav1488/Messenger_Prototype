@@ -10,6 +10,7 @@ namespace Messenger_Prototype.Services
         {
             return new User
             {
+                Id = entity.Id,
                 Login = entity.Login,
                 Name = entity.Name,
                Password = entity.Password,
@@ -21,32 +22,11 @@ namespace Messenger_Prototype.Services
         {
             return new UserEntity
             {
+                Id = user.Id,
                 Login = user.Login,
                 Name = user.Name,
                 Password = user.Password,
                 Status = user.Status,
-            };
-        }
-
-        public static Contact ToUiContact(ContactEntity entity)
-        {
-            return new Contact
-            {
-                AvatarPath = entity.AvatarPath,
-                Login = entity.Login,
-                Name= entity.Name,
-                Status = entity.Status,
-            };
-        }
-
-        public static ContactEntity toEntityContact(Contact contact)
-        {
-            return new ContactEntity
-            {
-                AvatarPath= contact.AvatarPath,
-                Login= contact.Login,
-                Name=contact.Name,
-                Status= contact.Status,
             };
         }
 
@@ -71,14 +51,19 @@ namespace Messenger_Prototype.Services
             };
         }
 
-        public static Chat ToUiChat(ChatEntity chatEntity, ContactEntity contactEntity)
+        public static Chat ToUiChat(ChatEntity chatEntity, UserEntity userEntity)
         {
             return new Chat
             {
                 Id = chatEntity.Id,
-                Partner = ToUiContact(contactEntity),
+                Partner = new Contact
+                {
+                    Login = userEntity.Login,
+                    Name = userEntity.Name,
+                    Status = userEntity.Status
+                },
                 Messages = new System.Collections.ObjectModel.ObservableCollection<Message>(),
-                LastMessage = chatEntity.LastMessage,
+                LastMessage = chatEntity.LastMessage
             };
         }
     }

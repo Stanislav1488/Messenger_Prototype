@@ -8,7 +8,6 @@ namespace Messenger_Prototype.Data
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<ChatEntity> Chats { get; set; }
         public DbSet<MessageEntity> Messages { get; set; }
-        public DbSet<ContactEntity> Contacts { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=messenger.db");

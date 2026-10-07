@@ -23,6 +23,7 @@ namespace Messenger_Prototype.View
         public LoginWindow()
         {
             InitializeComponent();
+            DataContext = new LoginViewModel();
         }
 
         private void OnPasswordChanged(object sender, RoutedEventArgs e)
